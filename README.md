@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Apex Retail Intelligence — End-to-End Data Engineering Pipeline
+=======
+# Apex-Retail-Intelligence-— End-to-End Data Engineering Pipeline
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 
 **Celebal Technologies | CEI'26 Internship Programme — Major Project**
 **Author:** Aashi Phulera
@@ -17,6 +21,7 @@ The pipeline is fault-tolerant, auditable, and idempotent, satisfying enterprise
 ---
 
 ## Architecture
+<<<<<<< HEAD
 
 ```
 Raw CSVs (Volume)
@@ -44,6 +49,30 @@ Raw CSVs (Volume)
 ## Folder Structure
 
 ```
+=======
+Raw CSVs (Volume)
+│
+▼
+┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐ ┌──────────────────┐
+│ Raw Zone │────▶│ Landing Zone │────▶│ Bronze Layer │────▶│ Silver Layer │
+│ (String CSVs) │ │ (Parquet + Audit) │ │ (Delta + meta) │ │ (DQ, SCD, MERGE) │
+└─────────────────┘ └──────────────────┘ └─────────────────┘ └──────────────────┘
+│
+▼
+┌──────────────────┐
+│ Gold Layer │
+│ (Star Schema) │
+└──────────────────┘
+│
+▼
+┌──────────────────┐
+│ KPI Reporting │
+└──────────────────┘
+
+---
+
+## Repository Structure
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 celebal project/
 ├── README.md
 ├── notebooks/
@@ -52,6 +81,7 @@ celebal project/
 │   ├── 03_Silver_Layer_Notebook.html
 │   └── 04_Gold_Layer_KPI_Notebook.html
 ├── Datasets/
+<<<<<<< HEAD
 │   ├── historical_data/
 │   ├── incremental_data/
 │   ├── audit_landing/
@@ -71,11 +101,19 @@ celebal project/
     ├── 11_phase6_kpi1_net_margin.png
     └── 12_phase6_kpi_outputs.png
 ```
+=======
+│   └── (your original CSVs — optional to include, some programmes don't want raw data in submission)
+└── SS/
+    ├── 00_catalog_setup.png
+    ├── 01_phase1_raw_ingestion.png
+    ├── ... (renamed screenshots)
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 
 ---
 
 ## Pipeline Phases
 
+<<<<<<< HEAD
 ### Phase 1 — Raw Zone (`01_Raw_Landing_Script`)
 Ingests all incoming CSVs, casts every column to String format, and organizes output into separate `raw/historical/` and `raw/incremental/` directories per dataset.
 
@@ -86,6 +124,18 @@ Converts Raw CSVs to Parquet. Dynamically reads `audit_landing*.csv` files and v
 Writes Landing Parquet data into Delta Lake tables with an `ingested_at` timestamp for full audit trail. Historical and incremental loads are kept in separate append-only tables — no deduplication at this stage, by design.
 
 ### Phase 4 — Silver Layer (`03_Silver_Layer_Notebook`)
+=======
+### Phase 1 — Raw Zone (`01_Raw_Landing_Script.py`)
+Ingests all incoming CSVs, casts every column to String format, and organizes output into separate `raw/historical/` and `raw/incremental/` directories per dataset.
+
+### Phase 2 — Landing Zone (`01_Raw_Landing_Script.py`)
+Converts Raw CSVs to Parquet. Dynamically reads `audit_landing*.csv` files and validates actual vs. expected row counts, producing a structured PASS/FAIL report. Pipeline halts on audit failure.
+
+### Phase 3 — Bronze Layer (`02_Bronze_Layer_Script.py`)
+Writes Landing Parquet data into Delta Lake tables with an `ingested_at` timestamp for full audit trail. Historical and incremental loads are kept in separate append-only tables — no deduplication at this stage, by design.
+
+### Phase 4 — Silver Layer (`03_Silver_Layer_Notebook.py`)
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 The core transformation layer:
 - **Data Quality Rules:** drops rows with missing primary keys, removes duplicates, casts numeric fields, fills missing values
 - **Customers — SCD Type 2:** historical tracking via `effective_start_date`, `effective_end_date`, `is_active`
@@ -96,11 +146,19 @@ The core transformation layer:
 - **Silver Audit Validation:** cross-checked against `*_silver_audit.csv` files
 - Includes a dedicated markdown cell explaining MERGE outcomes for all three tables
 
+<<<<<<< HEAD
 ### Phase 5 — Gold Layer (`04_Gold_Layer_KPI_Notebook`)
 Builds the Star Schema and registers all tables under Unity Catalog's `GOLD_tables` schema:
 - `dim_customer`, `dim_product`, `dim_promotion`, `dim_date`, `fact_sales`
 
 ### Phase 6 — KPI Reporting (`04_Gold_Layer_KPI_Notebook`)
+=======
+### Phase 5 — Gold Layer (`04_Gold_Layer_KPI_Notebook.py`)
+Builds the Star Schema and registers all tables under Unity Catalog's `GOLD_tables` schema:
+- `dim_customer`, `dim_product`, `dim_promotion`, `dim_date`, `fact_sales`
+
+### Phase 6 — KPI Reporting (`04_Gold_Layer_KPI_Notebook.py`)
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 Five business KPIs computed via native PySpark DataFrame/SQL operations, rendered inline:
 1. Net Margin by Region
 2. Average Order Value (AOV) by Promotion
@@ -120,6 +178,7 @@ Five business KPIs computed via native PySpark DataFrame/SQL operations, rendere
 
 ---
 
+<<<<<<< HEAD
 ## Gold Layer Summary
 
 | Table | Row Count |
@@ -137,6 +196,13 @@ Five business KPIs computed via native PySpark DataFrame/SQL operations, rendere
 - **No watermarking:** all incremental processing uses Delta Lake MERGE semantics, as explicitly required by the assignment.
 - **Idempotency:** Landing, Silver, and Gold layers use `overwrite`/`MERGE` and are safely re-runnable. Bronze is intentionally append-only per the assignment spec.
 - **Schema reconciliation:** incremental source files occasionally contained extra columns not present in historical files (e.g. pre-existing SCD metadata artifacts in the customer incremental file, `last_updated` in the product incremental file). These were reconciled explicitly — irrelevant artifacts dropped, meaningful new fields retained via `unionByName(allowMissingColumns=True)`.
+=======
+## Key Design Decisions
+
+- **No watermarking:** all incremental processing uses Delta Lake MERGE semantics, as explicitly required.
+- **Idempotency:** Landing, Silver, and Gold layers use `overwrite`/`MERGE` and are safely re-runnable. Bronze is intentionally append-only per the assignment spec.
+- **Schema reconciliation:** incremental source files occasionally contained extra columns not present in historical files (e.g. pre-existing SCD metadata artifacts in the customer incremental file, `last_updated` in product incremental). These were reconciled explicitly — irrelevant artifacts dropped, meaningful new fields retained via `unionByName(allowMissingColumns=True)`.
+>>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 - **Audit reconciliation note:** Silver-layer audit files describing only incremental batch sizes will not match final merged/deduplicated Silver counts by design — this is documented explicitly in the Silver notebook rather than treated as a failure.
 
 ---
