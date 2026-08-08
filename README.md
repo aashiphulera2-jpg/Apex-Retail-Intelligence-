@@ -39,23 +39,19 @@ Raw CSVs (Volume)
 ---
 
 ## Repository Structure
-apex-retail-intelligence/
+celebal project/
+├── README.md
 ├── notebooks/
-│ ├── 01_Raw_Landing_Script.py
-│ ├── 02_Bronze_Layer_Script.py
-│ ├── 03_Silver_Layer_Notebook.py
-│ └── 04_Gold_Layer_KPI_Notebook.py
-├── screenshots/
-│ ├── phase1_raw_ingestion.png
-│ ├── phase2_landing_audit.png
-│ ├── phase3_bronze_tables.png
-│ ├── phase4_silver_scd2_customers.png
-│ ├── phase4_silver_scd1_products.png
-│ ├── phase4_silver_sales_ledger.png
-│ ├── phase4_silver_audit_validation.png
-│ ├── phase5_gold_star_schema.png
-│ └── phase6_kpi_outputs.png
-└── README.md
+│   ├── 01_Raw_Landing_Script.html
+│   ├── 02_Bronze_Layer_Script.html
+│   ├── 03_Silver_Layer_Notebook.html
+│   └── 04_Gold_Layer_KPI_Notebook.html
+├── Datasets/
+│   └── (your original CSVs — optional to include, some programmes don't want raw data in submission)
+└── SS/
+    ├── 00_catalog_setup.png
+    ├── 01_phase1_raw_ingestion.png
+    ├── ... (renamed screenshots)
 
 ---
 
