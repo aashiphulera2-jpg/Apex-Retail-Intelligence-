@@ -1,6 +1,5 @@
 
 # Apex-Retail-Intelligence-— End-to-End Data Engineering Pipeline
->>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 
 **Celebal Technologies | CEI'26 Internship Programme — Major Project**
 **Author:** Aashi Phulera
@@ -19,7 +18,6 @@ The pipeline is fault-tolerant, auditable, and idempotent, satisfying enterprise
 ---
 
 ## Architecture
-<<<<<<< HEAD
 
 ```
 Raw CSVs (Volume)
@@ -111,7 +109,6 @@ celebal project/
 
 ## Pipeline Phases
 
-<<<<<<< HEAD
 ### Phase 1 — Raw Zone (`01_Raw_Landing_Script`)
 Ingests all incoming CSVs, casts every column to String format, and organizes output into separate `raw/historical/` and `raw/incremental/` directories per dataset.
 
@@ -144,7 +141,6 @@ The core transformation layer:
 - **Silver Audit Validation:** cross-checked against `*_silver_audit.csv` files
 - Includes a dedicated markdown cell explaining MERGE outcomes for all three tables
 
-<<<<<<< HEAD
 ### Phase 5 — Gold Layer (`04_Gold_Layer_KPI_Notebook`)
 Builds the Star Schema and registers all tables under Unity Catalog's `GOLD_tables` schema:
 - `dim_customer`, `dim_product`, `dim_promotion`, `dim_date`, `fact_sales`
@@ -176,7 +172,6 @@ Five business KPIs computed via native PySpark DataFrame/SQL operations, rendere
 
 ---
 
-<<<<<<< HEAD
 ## Gold Layer Summary
 
 | Table | Row Count |
