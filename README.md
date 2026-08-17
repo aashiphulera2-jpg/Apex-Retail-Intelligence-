@@ -152,7 +152,7 @@ Builds the Star Schema and registers all tables under Unity Catalog's `GOLD_tabl
 - `dim_customer`, `dim_product`, `dim_promotion`, `dim_date`, `fact_sales`
 
 ### Phase 6 — KPI Reporting (`04_Gold_Layer_KPI_Notebook.py`)
->>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
+
 Five business KPIs computed via native PySpark DataFrame/SQL operations, rendered inline:
 1. Net Margin by Region
 2. Average Order Value (AOV) by Promotion
