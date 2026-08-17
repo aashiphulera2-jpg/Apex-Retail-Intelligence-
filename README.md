@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# Apex Retail Intelligence — End-to-End Data Engineering Pipeline
-=======
+
 # Apex-Retail-Intelligence-— End-to-End Data Engineering Pipeline
 >>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
 
