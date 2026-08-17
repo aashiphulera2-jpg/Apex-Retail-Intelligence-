@@ -19,6 +19,7 @@ The pipeline is fault-tolerant, auditable, and idempotent, satisfying enterprise
 
 ## Architecture
 
+```
 Raw CSVs (Volume)
       │
       ▼
@@ -102,7 +103,7 @@ celebal project/
     ├── 00_catalog_setup.png
     ├── 01_phase1_raw_ingestion.png
     ├── ... (renamed screenshots)
->>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
+
 
 ---
 
@@ -129,7 +130,7 @@ Converts Raw CSVs to Parquet. Dynamically reads `audit_landing*.csv` files and v
 Writes Landing Parquet data into Delta Lake tables with an `ingested_at` timestamp for full audit trail. Historical and incremental loads are kept in separate append-only tables — no deduplication at this stage, by design.
 
 ### Phase 4 — Silver Layer (`03_Silver_Layer_Notebook.py`)
->>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
+
 The core transformation layer:
 - **Data Quality Rules:** drops rows with missing primary keys, removes duplicates, casts numeric fields, fills missing values
 - **Customers — SCD Type 2:** historical tracking via `effective_start_date`, `effective_end_date`, `is_active`
