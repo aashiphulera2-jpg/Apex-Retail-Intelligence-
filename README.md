@@ -96,7 +96,6 @@ celebal project/
     ├── 10_phase5_gold_star_schema.png
     ├── 11_phase6_kpi1_net_margin.png
     └── 12_phase6_kpi_outputs.png
-```
 =======
 │   └── (your original CSVs — optional to include, some programmes don't want raw data in submission)
 └── SS/
@@ -104,7 +103,7 @@ celebal project/
     ├── 01_phase1_raw_ingestion.png
     ├── ... (renamed screenshots)
 
-
+```
 ---
 
 ## Pipeline Phases
