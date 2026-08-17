@@ -194,7 +194,7 @@ Five business KPIs computed via native PySpark DataFrame/SQL operations, rendere
 - **No watermarking:** all incremental processing uses Delta Lake MERGE semantics, as explicitly required.
 - **Idempotency:** Landing, Silver, and Gold layers use `overwrite`/`MERGE` and are safely re-runnable. Bronze is intentionally append-only per the assignment spec.
 - **Schema reconciliation:** incremental source files occasionally contained extra columns not present in historical files (e.g. pre-existing SCD metadata artifacts in the customer incremental file, `last_updated` in product incremental). These were reconciled explicitly — irrelevant artifacts dropped, meaningful new fields retained via `unionByName(allowMissingColumns=True)`.
->>>>>>> ad4f7c63d932e286ea93e4c7daa1cf7530b9b7fb
+
 - **Audit reconciliation note:** Silver-layer audit files describing only incremental batch sizes will not match final merged/deduplicated Silver counts by design — this is documented explicitly in the Silver notebook rather than treated as a failure.
 
 ---
