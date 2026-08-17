@@ -19,7 +19,6 @@ The pipeline is fault-tolerant, auditable, and idempotent, satisfying enterprise
 
 ## Architecture
 
-```
 Raw CSVs (Volume)
       │
       ▼
